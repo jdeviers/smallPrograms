@@ -7,6 +7,8 @@ make
 ```
 with the Makefile in the working directory. Tested on Ubuntu 18.04, 20.04 and 22.04 with the gfortran compiler. 
 
+---
+
  - ## CmplxMatIO
    Can read from, and write to, an ASCII file a 2D array. Can also create a random-, complex-valued 2D array.
    Finally, can write 2D arrays to screen with user-friendly formatting. Any aforementioned array can be either real, complex, or integer. 
@@ -15,17 +17,50 @@ with the Makefile in the working directory. Tested on Ubuntu 18.04, 20.04 and 22
    This code was originally intended as a way of generating complex-valued, variously-shaped complex matrices mimicking the form of a spin-density matrix, for use with other FORTRAN programs to compute a [singlet yield](https://doi.org/10.1080/00268979809483134). More generally, it was an exercise in handling I/O with complex types, and in interfacing procedures. This code can still serve as a platform for implementing more matrix operations on square or rectangular arrays.
 
    **To compile:** requires only make and gfortran.
+   
    **To run:** simply run `./test` (the name of the executable -- can be modified to something more meaningful in the makefile).
 
-   **Notes on usage:** When performing I/O operations, **in**- and **out**-files (*i.e.* files to be **read** and **written to**, respectively) are specified as parameter strings, in the `prog.f90` file. As of now, only one infile and one outfile can be handled. Future develepments to the code, if any, could include providing the infile as an argument, and also implementing a way of generating outfile filenames via substring substitution.
+   **Notes on usage:** When performing I/O operations, **in**- and **out**-files (*i.e.* files to be **read** and **written to**, respectively) are specified as parameter strings, in the `prog.f90` file. As of now, only one infile and one outfile can be handled.
+
+   **Input:**
+    - (Optional) infile (CHARACTER(LEN=30)) (inside `prog.f90`): filename of ASCII file containing REAL or COMPLEX-valued 2D array.
+    - (Optional) outfile (CHARACTER(LEN=30)) (inside `prog.f90`): filename of ASCII file to which write an array.
+    - (Optional) D1,D2 (INTEGER) (inside `prog.f90`): extents of dimensions 1 and 2 of a random-valued, REAL or COMPLEX 2D array.
+
+   **Output:**
+    - 2D arrays, REAL or COMPLEX, written to screen or to file.
+
+   **Future dev:** Future developments to the code, if any, could include providing the infile as an argument, and also implementing a way of generating outfile filenames via substring substitution.
+ ---
    
  - ## dipolarCoupling
    Can compute the electron-electron dipolar coupling [(EED)](https://arxiv.org/pdf/1806.01519.pdf) (in the point-dipole approximation), between 2 electrons *a* and *b* separated by a vector $r_{ab}$.
    This code was intended to quickly evaluate the strength of the EED coupling as a function of distance. Within this context, the vectorial nature of $r_{ab}$ is not relevant, as only its norm is required. However, all routines in the `mod_procedures` module can be readily used in, for instance, the setup of a spin Hamiltonian and the propagation of a spin density matrix (such a code, although in Matlab, was used [there](https://doi.org/10.1063/5.0078115)).
 
    **To compile:** Requires make, gfortran and a LAPACK installation. The location of the library must be set in the Makefile.
-   **To run:**
+   
+   **To run:** run `./dipolar`. No arguments can be provided.
+
+   **Notes on usage:** As a standalone application, only the norm of the interactomic vector is needed. If possible, provide it such that the r_ab is of the form `(0,0,norm)` to avoid issues with the subsequent diagonalisation of A.
+   
+   **Input:**
+    - r_ab (REAL(dp),DIMENSION(3)) (inside `prog_dipole.f90`): inter-electron vector.
+
+   **Output:**
+    - d (REAL(dp)) (to screen): norm of the EED coupling.
+    - A (REAL(dp),DIMENSION(3,3)) (to screen): EED coupling matrix.
+    - W (REAL(dp),DIMENSION(3)) (to screen): diagonalised EED coupling matrix.
+  
+   **Future dev:** If the `mod_procedures` module is to be included into a wider program, it should be able to also diagonalise nonsymmetric matrices. A strategy as that implemented in the **MatrixDiag** project could be applied here.
    
  - ## generalPurposeXyzIoAndManips
+
+--- 
+
  - ## MatrixDiag
+
+---
+
  - ## MatrixRotation
+
+---
