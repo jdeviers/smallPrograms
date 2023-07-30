@@ -54,13 +54,57 @@ with the Makefile in the working directory. Tested on Ubuntu 18.04, 20.04 and 22
    **Future dev:** If the `mod_procedures` module is to be included into a wider program, it should be able to also diagonalise nonsymmetric matrices. A strategy as that implemented in the **MatrixDiag** project could be applied here.
    
  - ## generalPurposeXyzIoAndManips
+   Can read, write, and modify an [.xyz](https://open-babel.readthedocs.io/en/latest/FileFormats/XYZ_cartesian_coordinates_format.html) format file (for atomic coordinates). Average quantities can be computed on atomic coordinates, such as the center of mass ([COM](https://en.wikipedia.org/wiki/Center_of_mass#In_three_dimensions)) or the Root-Mean-Square Deviation ([RMSD](https://en.wikipedia.org/wiki/Root-mean-square_deviation_of_atomic_positions)) with respect to a reference geometry. Both these quantities can be computed using either a function or a subroutine. The program can also read and write REAL 2D arrays, and perform substring substitution -- again, either using a subroutine of a function.
+   The initial purpose of this code was simply an exercise in implementing the same algorithm as a subroutine and as a function.
+
+   **To compile:** requires only make and gfortran.
+
+   **To run:** run `./caller.x`. No arguments can be provided.
+
+   **Notes on usage:**
+
+   **Input:**
+    - (Optional) infile (CHARACTER(LEN=*)) (inside `prog_caller.f90`): filename of .xyz file.
+    - (Optional) outfile (CHARACTER(LEN=*)) (inside `prog_caller.f90`): filename of ASCII file to which write an array.
+
+   **Output:**
+    - .xyz arrays written to screen or to file.
+    - 2D arrays, REAL or COMPLEX, written to screen or to file.
+    - RMSD (REAL): Root-Mean-Square Deviation of atomic positions.
+    - COM (REAL,DIMENSION(3)): Center of Mass.
+
+   **Future dev:** Implementation of the ability to read a .xyz *trajectory* file. Compute the [RMSF](https://en.wikipedia.org/wiki/Mean_squared_displacement).
 
 --- 
 
  - ## MatrixDiag
 
+   **To compile:** Requires make, gfortran and a LAPACK installation. The location of the library must be set in the Makefile.
+
+   **To run:**
+
+   **Notes on usage**
+
+   **Input:**
+
+   **Output:**
+
+   **Future dev:**
+
 ---
 
  - ## MatrixRotation
+   
+   **To compile:** requires only make and gfortran.
+
+   **To run:**
+
+   **Notes on usage**
+
+   **Input:**
+
+   **Output:**
+
+   **Future dev:**
 
 ---
