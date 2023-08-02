@@ -78,6 +78,7 @@ with the Makefile in the working directory. Tested on Ubuntu 18.04, 20.04 and 22
 --- 
 
  - ## MatrixDiag
+   Diagonalises a NxN, real-valued matrix, symmetric or not. The matrix is provided, in free-format, inside a separate file; the path to which is provided at runtime as an argument to the program. It interfaces LAPACK's double precision matrix diagonalisation routines [DSYEV](https://netlib.org/lapack/explore-html/d2/d8a/group__double_s_yeigen_ga442c43fca5493590f8f26cf42fed4044.html) (for symmetric matrices) and [DGEEV](https://www.netlib.org/lapack/explore-html/d9/d8e/group__double_g_eeigen_ga66e19253344358f5dee1e60502b9e96f.html) (nonsymmetric). These routines consist in an efficient implementation of the [QR algorithm](https://en.wikipedia.org/wiki/QR_algorithm) for generating eigenvalues and eigenvectors to a matrix. This code was initially intended to allow a quick and handy evaluation of eigenvalues for [hyperfine coupling tensors](https://en.wikipedia.org/wiki/Hyperfine_structure). It was also included in a bash pipeline for computing averaged magnetic properties, with downstream operation on eigenvalues performed in simple python script, before the whole thing was turned into a single python script.
 
    **To compile:** Requires make, gfortran and a LAPACK installation. The location of the library must be set in the Makefile.
 
