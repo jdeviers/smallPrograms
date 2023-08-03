@@ -84,7 +84,7 @@ with the Makefile in the working directory. Tested on Ubuntu 18.04, 20.04 and 22
 
    **To run:** run `./diag_nxn <input_file>`. An example input matrix file is provided: see `N5.dat`.
 
-   **Notes on usage:** The input matrix must be given in a separated file and not fed to the executable as a stream. Its element do not have to follow a fixed formatting: they can be given as floats (with any number of significant digits), or as integers (which will be read as double precision floats anyway). Elements of the same row must be separated by atr least one space or tab. A new row is declared by insertig a newline.
+   **Notes on usage:** The input matrix must be given in a separated file and not fed to the executable as a stream. Its element do not have to follow a fixed formatting: they can be given as floats (with any number of significant digits), or as integers (which will be read as double precision floats anyway). Elements of the same row must be separated by at least one space or tab. A new row is declared by inserting a newline.
 
    **Input:**
     - (string, as argument) input matrix (REAL(dp),DIMENSION(N,N)): input square matrix. N is the extent of the matrix in either dimension.
@@ -104,17 +104,23 @@ with the Makefile in the working directory. Tested on Ubuntu 18.04, 20.04 and 22
 ---
 
  - ## MatrixRotation
+   Linearly transforms (*i.e.* rotates and scales) an input matrix A by applying a [transformation matrix](https://en.wikipedia.org/wiki/Transformation_matrix) B.
    
    **To compile:** requires only make and gfortran.
 
-   **To run:**
+   **To run:** run `./rotmat <input_matrix_path> <rotation_matrix_path>`.
 
-   **Notes on usage**
+   **Notes on usage:** The input matrices must be given in a separated file and not fed to the executable as a stream. Their elements do not have to follow a fixed formatting: they can be given as floats (with any number of significant digits), or as integers (which will be read as double precision floats anyway). Elements of the same row must be separated by at least one space or tab. A new row is declared by inserting a newline. The input matrix and the rotation matrix must have the same shape.
 
    **Input:**
+   	- (string, as argument) input matrix (REAL(dp),DIMENSION(N,N)): input square matrix. N is the extent of the matrix in either dimension.
+   	- (string, as argument) rotation matrix (REAL(dp),DIMENSION(N,N)): input square matrix.
 
    **Output:**
+   	- (to screen) A (REAL(dp),DIMENSION(N,N)): input matrix.
+   	- (to screen) B (REAL(dp),DIMENSION(N,N)): transformation matrix.
+   	- (to screen AND to file) C (REAL(dp),DIMENSION(N,N)): rotated input matrix.
 
-   **Future dev:**
+   **Future dev:** N/A.
 
 ---
