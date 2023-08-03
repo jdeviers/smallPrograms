@@ -82,15 +82,24 @@ with the Makefile in the working directory. Tested on Ubuntu 18.04, 20.04 and 22
 
    **To compile:** Requires make, gfortran and a LAPACK installation. The location of the library must be set in the Makefile.
 
-   **To run:**
+   **To run:** run `./diag_nxn <input_file>`. An example input matrix file is provided: see `N5.dat`.
 
-   **Notes on usage**
+   **Notes on usage:** The input matrix must be given in a separated file and not fed to the executable as a stream. Its element do not have to follow a fixed formatting: they can be given as floats (with any number of significant digits), or as integers (which will be read as double precision floats anyway). Elements of the same row must be separated by atr least one space or tab. A new row is declared by insertig a newline.
 
    **Input:**
+    - (string, as argument) input matrix (REAL(dp),DIMENSION(N,N)): input square matrix. N is the extent of the matrix in either dimension.
 
    **Output:**
-
-   **Future dev:**
+    - SYMMETRIC MATRIX:
+      - W (REAL(dp),DIMENSION(N)): eigenvalues of the diagonalised input matrix.
+      - A (REAL(dp),DIMENSION(N,N)): eigenvectors of the diagonalised input matrix. 
+    - NONSYMMETRIC MATRIX:
+      - WR (REAL(dp),DIMENSION(N)): REAL part of the eigenvalues of the diagonalised input matrix.
+      - WI (REAL(dp),DIMENSION(N)): IMAGINARY part of the eigenvalues of the diagonalised input matrix.
+      - VL (REAL(dp),DIMENSION(N,N)): LEFT eigenvectors of the diagonalised input matrix.
+      - VR (REAL(dp),DIMENSION(N,N)): RIGHT eigenvectors of the diagonalised input matrix.
+     
+   **Future dev:** N/A. 
 
 ---
 
